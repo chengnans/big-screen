@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const appName = '大型风力发电机监控平台'
+const appName = '大河岔村基地'
 </script>
 <style lang="scss" scoped>
 .layout {

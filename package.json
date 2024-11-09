@@ -23,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@tweenjs/tween.js": "^19.0.0",
     "animate.css": "^4.1.1",
     "highcharts": "^10.3.3",
@@ -30,6 +31,7 @@
     "pinia": "^2.0.32",
     "three": "^0.151.3",
     "uuid": "^9.0.0",
+    "vant": "^4.9.8",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

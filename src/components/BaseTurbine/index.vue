@@ -15,7 +15,7 @@
     </div>
     <div v-if="loading" class="loading">
       <IconLoading spin class="icon" />
-      <span>模型加载中,请耐心等待...</span>
+      <span>加载中,请耐心等待...</span>
     </div>
   </div>
 </template>
@@ -23,18 +23,26 @@
 import { provide } from 'vue'
 import { IconLoading } from '@arco-design/web-vue/es/icon'
 import { useTurbine } from './hooks/useTurbine'
+// import { useMap } from './hooks/useMap'
 
 const {
-  container,
-  loading,
-  equipmentComposeAnimation,
-  equipmentDecomposeAnimation,
-} = useTurbine()
+  AMap,
+  initMap
+} = useTurbine();
 
-provide('turbineActions', {
-  equipmentComposeAnimation,
-  equipmentDecomposeAnimation,
-})
+// const {
+  // container,
+  // loading,
+  // equipmentComposeAnimation,
+  // equipmentDecomposeAnimation,
+// } = useTurbine()
+
+// provide('turbineActions', {
+// // 设备合成动画
+//   equipmentComposeAnimation,
+// // 设备分解动画
+//   equipmentDecomposeAnimation,
+// })
 </script>
 <style lang="scss" scoped>
 .base-turbine {

@@ -3,3 +3,4 @@ dist
 node_modules
 components.d.ts
 docs
+src
