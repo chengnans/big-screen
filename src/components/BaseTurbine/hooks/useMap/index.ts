@@ -4,13 +4,13 @@ import AMapLoader from "@amap/amap-jsapi-loader";
 import "vant/es/toast/style";
 import { showFailToast } from "vant";
 import { onUnmounted, ref } from "vue";
-import useTurbine from "@/components/BaseTurbine/hooks/useTurbine";
 
 /**
  * 高德地图hooks
  * @param domId 地图容器id
  */
-export const useMap = ({ domId }: { domId?: string } = {}) => {
+// export const useMap = ({ domId }: { domId?: string } = {}) => {
+export const useMap = () => {
     const AMap = ref();
     const map = ref();
     async function initMap() {
@@ -29,7 +29,7 @@ export const useMap = ({ domId }: { domId?: string } = {}) => {
                 plugins: [] // 需要使用的的插件列表，如比例尺'AMap.Scale'等
             });
             // 如果传入地图容器id，直接创建地图实例
-            map.value = domId && new AMap.value.Map(domId);
+            // map.value = domId && new AMap.value.Map(domId);
         } catch (error) {
             console.log(error);
             // 提示错误
