@@ -1,6 +1,9 @@
 // src/hooks/useMap.ts
-// @ts-ignore
-import { ref, onMounted, Ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import type { Ref } from 'vue'; // 使用类型导入
+
+// 确保正确引用 AMap 命名空间
+declare let AMap: any;
 
 interface MapOptions {
     zoom: number;
@@ -8,14 +11,12 @@ interface MapOptions {
 }
 
 interface UseMapReturn {
-    // @ts-ignore
-    map: Ref<AMap.Map | null>;
+    map: Ref<any | null>;
     initMap: () => void;
 }
 
 export function useMap(containerRef: Ref<HTMLElement | null>, options: MapOptions): UseMapReturn {
-    // @ts-ignore
-    const map = ref<AMap.Map | null>(null);
+    const map = ref<any | null>(null);
 
     const initMap = (): void => {
         if (!containerRef.value) {
@@ -23,22 +24,26 @@ export function useMap(containerRef: Ref<HTMLElement | null>, options: MapOption
             return;
         }
 
-        // @ts-ignore
-        map.value = new AMap.Map(containerRef.value, {
-            zoom: options.zoom,
-            center: options.center,
-        });
+        if (AMap) {
+            map.value = new AMap.Map(containerRef.value, {
+                zoom: options.zoom,
+                center: options.center,
+                layers: [new AMap.TileLayer.Satellite()], // 设置卫星图层
+            });
+            // 添加缩放组件
+            const toolbar = new AMap.ToolBar({
+                position: 'LT', // 工具条位置，可选值：'LT'（左上）、'RT'（右上）、'LB'（左下）、'RB'（右下）
+            });
+            map.value.addControl(toolbar);
+        } else {
+            console.error('AMap is not defined. Please check your AMap script tag.');
+        }
 
         // 这里可以添加更多的地图初始化逻辑
     };
 
     onMounted(() => {
-        // @ts-ignore
-        if (window.AMap) {
-            initMap();
-        } else {
-            console.error('AMap is not defined. Please check your AMap script tag.');
-        }
+        initMap();
     });
 
     return { map, initMap };

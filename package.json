@@ -40,6 +40,7 @@
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@rushstack/eslint-patch": "^1.2.0",
+    "@types/amap-js-api": "^1.4.16",
     "@types/lodash": "^4.14.192",
     "@types/node": "^18.14.2",
     "@types/three": "^0.150.1",

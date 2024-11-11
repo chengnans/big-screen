@@ -101,49 +101,47 @@
 <!-- src/components/BaseTurbine/index.vue -->
 <template>
   <div ref="mapContainer" class="map-container">
-    <template #left>
+    <div v-if="chunkModules.left" class="base-turbine-left">
+      <div class="map-panels">
       <component :is="Widgets[item]" v-for="item in chunkModules.left" :key="item" />
-    </template>
-    <template #right>
+      </div>
+    </div>
+    <div v-if="chunkModules.right" class="base-turbine-right">
+      <div class="map-panels">
       <component :is="Widgets[item]" v-for="item in chunkModules.right" :key="item" />
-    </template>
-    <template #control>
+      </div>
+    </div>
+    <div class="map-controls">
       <Widgets.ControlPanel />
-      <Widgets.ControlTurbine />
-    </template>
+<!--      注销掉风机控制-->
+<!--      <Widgets.ControlTurbine />-->
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, provide } from 'vue';
+import type { Ref } from 'vue'; // 使用类型导入
 import { useLayoutStore } from '@/stores/modules/layout';
 import { storeToRefs } from 'pinia';
 import Widgets from '../../widgets';
 import { useMap } from '@/hooks/useMap';
 
-const { chunkModules } = storeToRefs(useLayoutStore());
+const layoutStore = useLayoutStore();
+const { chunkModules } = storeToRefs(layoutStore);
 const mapContainer = ref<HTMLElement | null>(null);
 
 const { map, initMap } = useMap(mapContainer, {
-  zoom: 10,
-  center: [116.39, 39.9], // 北京市经纬度
-});
-
-provide('turbineActions', {
-  equipmentComposeAnimation: () => {
-    console.log('设备合成动画');
-  },
-  equipmentDecomposeAnimation: () => {
-    console.log('设备分解动画');
-  },
+  zoom: 15,
+  center: [119.999, 36.620], // 北京市经纬度
 });
 </script>
 
-<style lang="scss" scoped>
+<style>
 .map-container {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
 
   .base-turbine-left,
   .base-turbine-right {
@@ -164,6 +162,7 @@ provide('turbineActions', {
     }
 
     .map-panels {
+      z-index: 999;
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       grid-gap: 10px;
@@ -173,28 +172,26 @@ provide('turbineActions', {
   }
 
   .map-controls {
+    position: absolute;
+    z-index: 1000; /* 确保高于地图和其他内容 */
     display: flex;
     flex-direction: column;
     grid-gap: 10px;
   }
 
-  .loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    font-size: 20px;
-    color: #fff;
-
-    .icon {
-      margin-bottom: 10px;
-      font-size: 26px;
-    }
+  /* 调试样式，确保 ToolBar 显示 */
+  .amap-zoomcontrol {
+    position: absolute !important;
+    z-index: 1001 !important;
   }
 }
 </style>
+<!--.map-controls {-->
+<!--  position: absolute;-->
+<!--  bottom: 10px;-->
+<!--  left: 10px;-->
+<!--  z-index: 1000; /* 确保高于地图和其他内容 */-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--  grid-gap: 10px;-->
+<!--}-->
