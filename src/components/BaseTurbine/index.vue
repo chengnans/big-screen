@@ -101,8 +101,8 @@
 <!-- src/components/BaseTurbine/index.vue -->
 <template>
   <div ref="mapContainer" class="map-container">
-<!--    高德地图-->
-    <AMapComponent />
+<!--    天地图-->
+    <Tmap />
     <div v-if="chunkModules.left" class="base-turbine-left">
       <div class="map-panels">
       <component :is="Widgets[item]" v-for="item in chunkModules.left" :key="item" />
@@ -129,10 +129,16 @@ import { storeToRefs } from 'pinia';
 import Widgets from '../../widgets';
 // import { useMap } from '@/hooks/useMap';
 
-import AMapComponent from '@/components/AMapComponent.vue';
+import Tmap from '@/components/Tmap.vue';
 
 const layoutStore = useLayoutStore();
 const { chunkModules } = storeToRefs(layoutStore);
+
+const apiKey = '146ef40a03fafd31cffb20ff118eb44b'; // 替换为你的天地图API密钥
+const mapOptions = {
+  zoom: 10,
+  center: [116.39, 39.9]
+};
 </script>
 
 <style>
