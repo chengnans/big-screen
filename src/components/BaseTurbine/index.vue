@@ -101,6 +101,8 @@
 <!-- src/components/BaseTurbine/index.vue -->
 <template>
   <div ref="mapContainer" class="map-container">
+<!--    高德地图-->
+    <AMapComponent />
     <div v-if="chunkModules.left" class="base-turbine-left">
       <div class="map-panels">
       <component :is="Widgets[item]" v-for="item in chunkModules.left" :key="item" />
@@ -112,7 +114,7 @@
       </div>
     </div>
     <div class="map-controls">
-      <Widgets.ControlPanel />
+<!--      <Widgets.ControlPanel />-->
 <!--      注销掉风机控制-->
 <!--      <Widgets.ControlTurbine />-->
     </div>
@@ -125,16 +127,12 @@ import type { Ref } from 'vue'; // 使用类型导入
 import { useLayoutStore } from '@/stores/modules/layout';
 import { storeToRefs } from 'pinia';
 import Widgets from '../../widgets';
-import { useMap } from '@/hooks/useMap';
+// import { useMap } from '@/hooks/useMap';
+
+import AMapComponent from '@/components/AMapComponent.vue';
 
 const layoutStore = useLayoutStore();
 const { chunkModules } = storeToRefs(layoutStore);
-const mapContainer = ref<HTMLElement | null>(null);
-
-const { map, initMap } = useMap(mapContainer, {
-  zoom: 15,
-  center: [119.999, 36.620], // 北京市经纬度
-});
 </script>
 
 <style>
@@ -178,20 +176,5 @@ const { map, initMap } = useMap(mapContainer, {
     flex-direction: column;
     grid-gap: 10px;
   }
-
-  /* 调试样式，确保 ToolBar 显示 */
-  .amap-zoomcontrol {
-    position: absolute !important;
-    z-index: 1001 !important;
-  }
 }
 </style>
-<!--.map-controls {-->
-<!--  position: absolute;-->
-<!--  bottom: 10px;-->
-<!--  left: 10px;-->
-<!--  z-index: 1000; /* 确保高于地图和其他内容 */-->
-<!--  display: flex;-->
-<!--  flex-direction: column;-->
-<!--  grid-gap: 10px;-->
-<!--}-->
