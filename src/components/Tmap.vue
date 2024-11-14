@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { onMounted, render, createVNode } from "vue";
-import demo from './baseWindow.vue';
+import baseWindow from './baseWindow.vue';
 const init = () => {
   // 确保 T 是全局对象
   const T = window.T;
@@ -19,7 +19,7 @@ const init = () => {
   // map.addOverLay(marker);
 
 // 创建虚拟节点
-  const infoWindowContent = createVNode(demo);
+  const infoWindowContent = createVNode(baseWindow);
   let node = document.createElement('div'); // 创建一个div节点
   render(infoWindowContent, node); // 实例组件挂载到node节点上
 
