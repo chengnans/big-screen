@@ -1,1 +1,26 @@
 /* stylelint-disable-next-line no-empty-source */
+// 隐藏天地图logo及信息
+.tdt-control-copyright {
+  display: none !important;
+}
+
+.tdt-control-datasources {
+  display: none !important;
+}
+
+// 去除天地图信息窗口原有样式
+.tdt-infowindow-content-wrapper, .tdt-infowindow-tip {
+  background: transparent !important;
+}
+
+.tdt-infowindow-content-wrapper {
+  padding: 0 !important;
+}
+
+.tdt-infowindow-content {
+  margin: 0 !important;
+}
+
+.tdt-infowindow-tip-container {
+  display: none !important;
+}
