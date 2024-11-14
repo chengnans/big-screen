@@ -1,7 +1,7 @@
 <!--首页弹窗自定义-->
 <template>
-  <a href="https://www.w3school.com.cn/tags/tag_a.asp">
-  <div class="container">
+  <a href="/base_index">
+  <div class="container" >
     <h1>大河岔村基地</h1>
     <p>面积：<span class="highlight">422.81亩 (28.19公顷)</span></p>
     <p>设备：<span class="highlight">44台</span></p>
