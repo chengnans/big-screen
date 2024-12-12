@@ -26,6 +26,7 @@
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@tweenjs/tween.js": "^19.0.0",
     "animate.css": "^4.1.1",
+    "element-plus": "^2.9.0",
     "highcharts": "^10.3.3",
     "lodash": "^4.17.21",
     "pinia": "^2.0.32",

@@ -12,10 +12,10 @@ const init = () => {
   // 创建地图实例
   const map = new T.Map("tdt");
   map.setMapType(window.TMAP_SATELLITE_MAP);
-  map.centerAndZoom(new T.LngLat(119.999, 36.620), 17);
+  map.centerAndZoom(new T.LngLat(119.990, 36.610), 17);
 
   // 创建标记点
-  const marker = new T.Marker(new T.LngLat(119.999, 36.620));
+  const marker = new T.Marker(new T.LngLat(119.990, 36.610));
   // map.addOverLay(marker);
 
 // 创建虚拟节点
@@ -34,7 +34,7 @@ const init = () => {
   })
 
   // 打开信息窗口
-  map.openInfoWindow(infoWindow, new T.LngLat(119.999, 36.620));
+  map.openInfoWindow(infoWindow, new T.LngLat(119.990, 36.610));
 
   // 地图添加标识及信息窗口
     map.addOverLay(marker,infoWindow)
